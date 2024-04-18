@@ -2,6 +2,8 @@ from RAG.tools.vectorizer import class_name, connect_client
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
+model = SentenceTransformer('sentence-transformers/all-roberta-large-v1')
+
 
 def semantic_search(query: str, chunk_num: int) -> str:
     client = connect_client()
@@ -10,7 +12,6 @@ def semantic_search(query: str, chunk_num: int) -> str:
         response = collection.query.fetch_objects(include_vector=True)
         vectors = [o.vector['default'] for o in response.objects]
 
-        model = SentenceTransformer('sentence-transformers/all-roberta-large-v1')
         query_vector = model.encode(query)
 
         dot_product = np.dot(vectors, query_vector)
