@@ -4,3 +4,5 @@ nltk~=3.8.1
 weaviate-client~=4.4.4
 sentence-transformers~=2.3.1
 numpy~=1.26.4
+streamlit~=1.31.1
+cohere~=4.47
