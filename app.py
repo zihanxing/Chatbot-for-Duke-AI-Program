@@ -2,10 +2,14 @@ import streamlit as st
 
 from RAG.tools.response_generator import generate_with_rag
 
-st.title('RAG Generation')
-
 
 def main():
+    st.set_page_config(page_title="Conversational Interface", page_icon="logo.png")
+    st.title('RAG Generation')
+
+    # Load the logo image
+    st.image("logo.png", width=1000)
+
     st.title("Conversational Interface")
 
     # Initialize the conversation history
