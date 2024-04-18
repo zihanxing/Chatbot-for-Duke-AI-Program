@@ -8,7 +8,7 @@ def main():
     st.title('RAG Generation')
 
     # Load the logo image
-    st.image("logo.png", width=1000)
+    st.image("img.png", width=1000)
 
     st.title("Conversational Interface")
 
