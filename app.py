@@ -5,7 +5,7 @@ from RAG.tools.response_generator import generate_with_rag
 
 def main():
     st.set_page_config(page_title="Conversational Interface", page_icon="logo.png")
-    st.title('RAG Generation')
+    st.title('Duke MEng AI Chatbot for Prospective Students')
 
     # Load the logo image
     st.image("img.png", width=1000)
