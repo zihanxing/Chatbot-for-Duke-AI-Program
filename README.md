@@ -1,5 +1,10 @@
 # Chatbot for Duke AI MEng Program
 
+## Introduction
+This project aims to build a chatbot for the Duke AI MEng Program. The chatbot is designed to help students with questions about the program and provide useful information. The chatbot is built on a pipeline that consists of a Retriever-Reader model, a Fine-tuned model, and a Reinforcement Learning Human Feedback model. The chatbot is designed to provide accurate and helpful responses to user questions.
+
+Link to the chatbot: https://chatbot-for-duke-ai-program-czxuhfx5loyflzempztkpb.streamlit.app/
+
 ## Data Sources
 1. Web Scraping from Duke websites/Q&A sheet using beautifulsoup
 2. Manually collected relevant Q&A
