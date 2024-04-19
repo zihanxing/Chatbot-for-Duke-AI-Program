@@ -3,15 +3,22 @@
 ## Data Sources
 1. Web Scraping from Duke websites/Q&A sheet using beautifulsoup
 2. Manually collected relevant Q&A
+3. Intel/orca_dpo_pairs - for RLHF(DPO)
 
 ## System Architecture 
 User input -> RAG -> If RAG context has a cosine similarity over 0.5 with the user input, then use user input + RAG context as prompt; otherwise, use user input as prompt -> Fine Tuned Model -> RLHF -> Output
 
 ## Modeling Deision
+
 ### RAG
+Implementation scripts and files are in `./RAG`
+
 Scraped data from relevant websites (ai.meng.duke.edu & https://sites.duke.edu/aipi/new-student-resources/) and stored in weaviate online cluster.
 
+
+
 ### Fine Tune
+Implementation scripts and files are in `./notebook/mistral_finetune*.ipynb`
 #### Initial Model: 
 
 Start with a large pre-trained model Mistral-7B-v1.0
@@ -36,6 +43,11 @@ Apply some preprocessing to the model to prepare it for training. For that use t
 
 During the fine-tuning process, only the parameters in the low-rank matrices are updated. The rest of the model's parameters are kept fixed. We firstly finetune the model on the GAIR QA dataset, then we finetune the model on our AIPI QA dataset again based on the first fine tuned model. We use hugging face’s transformers.Trainer to train the model.
 
+### RLHF
+Implementation main script location `./RLHF_DPO/DPO_fine_tune_mistral_7b.py`
+
+For efficient training, we use Direct Prefernce Optimizaiton (DPO) to train the model. DPO does not require the creation of a separate reward model or multiple rounds of training, making it easier to implement and train.
+
 ## Performance Evaluation
 Answer Relevancy, Toxicity, Human Evaluation
 
@@ -48,6 +60,8 @@ Answer Relevancy, Toxicity, Human Evaluation
 
 4. Weaviate Vector Database: Free
 
+## Authors
+Haoyang Ma, Yibo Liu, Shuaiming Jing, Zihan “Zach” Xing
 
-## RLHF
+
 
