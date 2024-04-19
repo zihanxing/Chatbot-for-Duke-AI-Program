@@ -15,15 +15,27 @@ headers = {
 def generate_with_rag(query: str):
     context = semantic_search(query, 1)
     print(context)
+    new_query = f"""
+    ### Instruction:
+    Use the provided input to create an instruction that could have been used to generate the response with an LLM.
+    ### Question {query} #
+    ### Answer
+    """
     if cosine_sim_comparison(context, query) >= 0.5:
-        prompt = f'query: {query}\n\ncontext: {context}'
+        prompt = f'context: {context}\n\nquery: {new_query}'
         return generate_response(prompt), context
     else:
         return generate_response(query)
 
 
 def generate_response(query):
-    response = requests.post(API_URL, headers=headers, json={'inputs': query, 'parameters': {}})
+    prompt = f"""
+    ### Instruction:
+    Use the provided input to create an instruction that could have been used to generate the response with an LLM.
+    ### Question {query} #
+    ### Answer
+    """
+    response = requests.post(API_URL, headers=headers, json={'inputs': prompt, 'parameters': {}})
     print(response.json())
     return response.json()[0]['generated_text']
 
