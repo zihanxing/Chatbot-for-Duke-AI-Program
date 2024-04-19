@@ -29,6 +29,8 @@ def main():
     # Generate a response using the backend function
     if user_input and st.button("Submit"):
         response = generate_with_rag(user_input)
+        response = response.split("### Answer:\n")[-1]
+        print(response)
         st.session_state.conversation_history.append({"sender": "user", "text": user_input})
         st.session_state.conversation_history.append({"sender": "assistant", "text": response})
         st.experimental_rerun()
